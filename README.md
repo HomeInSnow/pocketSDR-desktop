@@ -7,6 +7,35 @@
 
 ---
 
+## About pocketSDR-desktop
+
+**pocketSDR-desktop** is an independently maintained fork of
+[tomojitakasu/PocketSDR](https://github.com/tomojitakasu/PocketSDR), based on
+the official v0.22 release (2026-11-03). The upstream project remains the
+authoritative implementation of Pocket SDR; this fork exists to support the
+external-receiver validation workflow of the
+[gnss-sim-desktop](https://github.com/HomeInSnow/gnss-sim-desktop) GNSS signal
+simulator and is maintained as a standalone project from here on. Everything
+below this section is the original upstream README, unmodified.
+
+Current additions in this fork:
+
+- **`local_build/`** — side-car patched engine sources (the official `src/`
+  tree is left untouched) plus a `build_all.sh` recipe producing three
+  web-replay engine variants: the standard engine, an
+  atmosphere/satellite-clock *both-off* variant, and an E1+E5a dual-frequency
+  **IFLC** variant (`sdr_func_iflc.c`, `sdr_pvt_iflc.c`, `pntpos_iflc.c`,
+  `ephemeris_iflc.c`).
+- **Galileo I/NAV ephemeris from broadcast decoding** (`setseleph(SYS_GAL, 0)`)
+  and `$EPH` navigation-data exposure for replay-time orbit inspection.
+- **Replay-tuned RAIM/FDE policy** for low-satellite-count simulated skies.
+
+See [`local_build/README.md`](local_build/README.md) for the full patch list,
+build instructions and validation results. This section is revised as the
+fork evolves.
+
+---
+
 ## **Overview**
 
 **Pocket SDR** is an open-source Global Navigation Satellite System (GNSS) receiver based
